@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1013279156080",
+    "firebase_url": "https://androidapp-d4a2c.firebaseio.com",
+    "project_id": "androidapp-d4a2c",
+    "storage_bucket": "androidapp-d4a2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013279156080:android:0883f852b90bd4c2",
+        "android_client_info": {
+          "package_name": "android.admob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013279156080-4mirkbbubh11o4b8h675ujgkcha9grvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQoyC5g-V0yG9X3q7YmJ01RlG28ajYVPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013279156080-4mirkbbubh11o4b8h675ujgkcha9grvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

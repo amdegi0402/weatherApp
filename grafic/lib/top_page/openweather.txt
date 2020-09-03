@@ -1,0 +1,14 @@
+{
+    coord: {lon: 130.47, lat: 33.68}, 
+    weather: [{id: 803, main: Clouds, description: broken clouds, icon: 04n}], 
+    base: stations, 
+    main: {temp: 31.1, pressure: 1011, humidity: 58, temp_min: 29.44, temp_max: 33.33}, 
+    visibility: 10000, 
+    wind: {speed: 3.6, deg: 310}, 
+    clouds: {all: 75}, dt: 1564655530, 
+    sys: {type: 1, id: 7998, message: 0.0069, country: JP, sunrise: 1564604972, sunset: 1564654757}, 
+    timezone: 32400, 
+    id: 1852109, 
+    name: Shingu, 
+    cod: 200
+}

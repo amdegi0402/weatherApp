@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1006043441960",
+    "firebase_url": "https://yamatenkiapp.firebaseio.com",
+    "project_id": "yamatenkiapp",
+    "storage_bucket": "yamatenkiapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006043441960:android:5c032c49bcf835d8707e1d",
+        "android_client_info": {
+          "package_name": "com.yamatenkis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006043441960-jk2h362pg8evtf0olqvt6fe5393oom4r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7qvhqDGTa07FLgCQPoFe6fc9j3RAwK7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006043441960-jk2h362pg8evtf0olqvt6fe5393oom4r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
