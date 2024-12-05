@@ -1,231 +1,132 @@
 import 'package:flutter/material.dart';
-import 'package:grafic/database/databases.dart';
-import 'package:grafic/top_page/MoutainList.dart';
+import 'package:weather_app/database/databases.dart';
+import 'package:weather_app/top_page/mountain_list.dart';
 
-void main() => runApp(new MyApp());
-var width;
-
+void main() async {
+  // Flutterの初期化を確実に行う
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // データベースの初期化
+  await createDatabase();
+  
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  var size = 20.0;
-    
+  const MyApp({super.key});
+
   @override
-  Widget build(BuildContext context){ 
-    createDatabase();
+  Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'top page',
+      title: '九州天気情報',
       theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.lightGreen[800],
-        accentColor: Colors.greenAccent[600],
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('場所を選択してください'),
-          centerTitle: true,
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.lightGreen,
+          brightness: Brightness.dark,
         ),
-        body:LayoutBuilder(
-          builder: (context, constraints) {
-            //createDatabase();
-            //スクロール
-            return SingleChildScrollView(
-          //県別のボタン設置
-          child:
-          Column(children: <Widget>[
-            Padding(padding: EdgeInsets.all(10.0),),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-              Expanded(child: 
-                ButtonTheme(
-                  //minWidth: 155.0,
-                  height: 150.0,
-                  child: RaisedButton(
-                    color: Colors.lightBlue[300],
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          //settings: RouteSettings(name: "/rooms/<roomId>"),
-                          builder: (BuildContext context) => MountainList(num: 1)),//引数に県ナンバーを挿入して値を渡す
-                      );
-                    },
-                    child: Text("福岡",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,)),
-                    shape: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)),),
-                  ),
-                ),
-              ),
-
-              Expanded(child:
-                ButtonTheme(
-                  //minWidth: 155.0,
-                  height: 150.0,
-                  child: RaisedButton(
-                    color: Colors.red[100],
-                   
-                    onPressed:(){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          //settings: RouteSettings(name: "/rooms/<roomId>"),
-                          builder: (BuildContext context) => MountainList(num: 7)),
-                      );
-                    },
-                    child: Text("大分",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,)),
-                    shape: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)),),
-                  ),
-                ),
-              ),
-              ],
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(child:
-                  ButtonTheme(
-                    //minWidth: 155.0,
-                    height: 150.0,
-                    child: RaisedButton(
-                      color: Colors.lightGreen[600],
-                      onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          //settings: RouteSettings(name: "/rooms/<roomId>"),
-                          builder: (BuildContext context) => MountainList(num: 3)),
-                      );
-                    },
-                      child: Text("長崎",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,)),
-                      shape: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)),),
-                    ),
-                  ),
-                ),
-                
-                Expanded(child:
-                  ButtonTheme(
-                    //minWidth: 155.0,
-                    height: 150.0,
-                    child: RaisedButton(
-                      color: Colors.blue[300],
-                      onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          //settings: RouteSettings(name: "/rooms/<roomId>"),
-                          builder: (BuildContext context) => MountainList(num: 2)),//引数に県ナンバーを挿入して値を渡す
-                      );
-                    },
-                      child: Text("佐賀",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,)),
-                      shape: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)),),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(child:
-                  ButtonTheme(
-                    //minWidth: 155.0,
-                    height: 150.0,
-                    child: RaisedButton(
-                      color: Colors.red[300],
-                      onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          //settings: RouteSettings(name: "/rooms/<roomId>"),
-                          builder: (BuildContext context) => MountainList(num: 4)),//引数に県ナンバーを挿入して値を渡す
-                      );
-                    },
-                      child: Text("熊本",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,)),
-                      shape: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)),),
-                    ),
-                  ),
-                ),
-
-                Expanded(child:
-                  ButtonTheme(
-                    //minWidth: 155.0,
-                    height: 150.0,
-                    child: RaisedButton(
-                      color: Colors.green,
-                      onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          //settings: RouteSettings(name: "/rooms/<roomId>"),
-                          builder: (BuildContext context) => MountainList(num: 5)),//引数に県ナンバーを挿入して値を渡す
-                      );
-                    },
-                      child: Text("宮崎",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,)),
-                      shape: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)),),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(child:
-                  ButtonTheme(
-                    //minWidth: 155.0,
-                    height: 150.0,
-                    child: RaisedButton(
-                      color: Colors.black38,
-                      onPressed: () {
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          //settings: RouteSettings(name: "/rooms/<roomId>"),
-                          builder: (BuildContext context) => MountainList(num: 6)),//引数に県ナンバーを挿入して値を渡す
-                      );},
-                      child: Text("鹿児島",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,)),
-                      shape: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)),),
-                    ),
-                  ),
-                ),
-
-                Expanded(child:
-                  ButtonTheme(
-                    //minWidth: 155.0,
-                    height: 150.0,
-                    child: RaisedButton(
-                      color: Colors.pink[300],
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            //settings: RouteSettings(name: "/rooms/<roomId>"),
-                            builder: (BuildContext context) => MountainList(num: 8)),//引数に県ナンバーを挿入して値を渡す
-                        );
-                      },
-                      child: Text("沖縄",style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,)),
-                      shape: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10.0)),),
-                    ),
-                  ),
-                ),
-              ],
-            ), 
-          ],)
-        );
-          }
-          
-      )
-    )
+      ),
+      home: const LocationSelectionScreen(),
     );
   }
 }
 
+class LocationSelectionScreen extends StatelessWidget {
+  const LocationSelectionScreen({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('場所を選択してください'),
+        centerTitle: true,
+      ),
+      body: const LocationGrid(),
+    );
+  }
+}
 
+class LocationGrid extends StatelessWidget {
+  const LocationGrid({super.key});
 
- 
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          _buildLocationRow(context, [
+            _LocationData('福岡', 1, Colors.lightBlue[300]!),
+            _LocationData('大分', 7, Colors.red[100]!),
+          ]),
+          const SizedBox(height: 16),
+          _buildLocationRow(context, [
+            _LocationData('長崎', 3, Colors.lightGreen[600]!),
+            _LocationData('佐賀', 2, Colors.blue[300]!),
+          ]),
+          const SizedBox(height: 16),
+          _buildLocationRow(context, [
+            _LocationData('熊本', 4, Colors.red[300]!),
+            _LocationData('宮崎', 5, Colors.green),
+          ]),
+          const SizedBox(height: 16),
+          _buildLocationRow(context, [
+            _LocationData('鹿児島', 6, Colors.grey[800]!),
+            _LocationData('沖縄', 8, Colors.pink[300]!),
+          ]),
+        ],
+      ),
+    );
+  }
 
- 
+  Widget _buildLocationRow(BuildContext context, List<_LocationData> locations) {
+    return Row(
+      children: locations.map((location) => 
+        Expanded(
+          child: _buildLocationButton(context, location),
+        )
+      ).toList(),
+    );
+  }
 
+  Widget _buildLocationButton(BuildContext context, _LocationData location) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: ElevatedButton(
+        onPressed: () => _navigateToLocationDetails(context, location.id),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: location.color,
+          minimumSize: const Size.fromHeight(150),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        child: Text(
+          location.name,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _navigateToLocationDetails(BuildContext context, int locationId) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MountainList(num: locationId),
+      ),
+    );
+  }
+}
+
+class _LocationData {
+  final String name;
+  final int id;
+  final Color color;
+
+  const _LocationData(this.name, this.id, this.color);
+}
